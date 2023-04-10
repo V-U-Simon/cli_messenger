@@ -25,7 +25,6 @@ def create_presence(account_name="Guest"):
     :param account_name:
     :return:
     """
-    # {'action': 'presence', 'time': 1573760672.167031, 'user': {'account_name': 'Guest'}}
     out = {ACTION: PRESENCE, TIME: time.time(), USER: {ACCOUNT_NAME: account_name}}
     return out
 
@@ -44,8 +43,10 @@ def process_ans(message):
 
 
 def main():
-    """Загружаем параметы коммандной строки"""
-    # client.py 192.168.1.2 8079
+    """
+    Загружаем параметы коммандной строки
+    :return:
+    """
     try:
         server_address = sys.argv[1]
         server_port = int(sys.argv[2])
@@ -55,7 +56,7 @@ def main():
         server_address = DEFAULT_IP_ADDRESS
         server_port = DEFAULT_PORT
     except ValueError:
-        print("В качестве порта может быть указано только число в диапазоне от 1024 до 65535.")
+        print("В качастве порта может быть указано только число в диапазоне от 1024 до 65535.")
         sys.exit(1)
 
     # Инициализация сокета и обмен

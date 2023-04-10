@@ -10,10 +10,8 @@ from common.variables import ACCOUNT_NAME, ACTION, DEFAULT_PORT, ERROR, MAX_CONN
 
 def process_client_message(message):
     """
-    Обработчик сообщений от клиентов, принимает словарь -
-    сообщение от клинта, проверяет корректность,
-    возвращает словарь-ответ для клиента
-
+    Обработчик сообщений от клиентов, принимает словарь - сообщение от клинта,
+    проверяет корректность, возвращает словарь-ответ для клиента
     :param message:
     :return:
     """
@@ -32,10 +30,8 @@ def main():
     """
     Загрузка параметров командной строки, если нет параметров, то задаём значения по умоланию.
     Сначала обрабатываем порт:
-    server.py -p 8079 -a 192.168.1.2
     :return:
     """
-
     try:
         if "-p" in sys.argv:
             listen_port = int(sys.argv[sys.argv.index("-p") + 1])
@@ -54,7 +50,7 @@ def main():
 
     try:
         if "-a" in sys.argv:
-            listen_address = sys.argv[sys.argv.index("-a") + 1]
+            listen_address = int(sys.argv[sys.argv.index("-a") + 1])
         else:
             listen_address = ""
 
@@ -76,7 +72,6 @@ def main():
         try:
             message_from_cient = get_message(client)
             print(message_from_cient)
-            # {'action': 'presence', 'time': 1573760672.167031, 'user': {'account_name': 'Guest'}}
             response = process_client_message(message_from_cient)
             send_message(client, response)
             client.close()
